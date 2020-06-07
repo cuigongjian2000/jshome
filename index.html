@@ -115,11 +115,10 @@
     </div>
 </body>
 <script src="jquery.js"></script>
-<script>
+script>
     var index = 0;
     var length = $('.nav li').length;
-    var time = setInterval(move, 2000);
-    console.log(length);
+    var time = setInterval(move, 3000);
 
     function move() {
         index++;
@@ -129,6 +128,26 @@
         $(".nav li").eq(index).addClass("current").siblings().removeClass("current");
         $(".photo ul li").eq(index).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
     }
+    $(".photo").hover(function() {
+            clearInterval(time);
+        },
+        function() {
+            time = setInterval(move, 3000);
+        });
+    $(".right").click(function() {
+        move();
+    });
+    function moveL() {
+        index--;
+        if (index == -1) {
+            index = 3
+        }
+        $(".nav li").eq(index).addClass("current").siblings().removeClass("current");
+        $(".photo ul li").eq(index).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+    }
+    $(".left").click(function() {
+        moveL();
+    });
 </script>
 
 </html>
